@@ -38,8 +38,27 @@ Here in this paper authors proposed a repair technique to automatically resolve 
 
 ## Introduction
 
->Automated driving system is often several units of functionality features known as ADS that automate specify driving tasks e.g Emergency brakes,traffic light cruise control and Artificial intelligence should also b envolved to know the enviroment information such as pedestarian speed,position of the car road structure lanes.This information should be useful for ADS feature to know car maneuver.Cruise control feature control car acceleratin speed while at the same time traffic recognization features helps to stop car when traffic light turn red.Some integrations rules are applied to resolve maneuver conflicts.Integrations rules provide us that which feature should be priortized according to condition such cruise control for speed traffic light recognization for traffic.The should should be come in contact with system after measuring enviroment information.Integration rules tend to diffuclt as they should provide large numbers of enviroment traffic light recognization.There needs to assist engineers as they repair integration rules for every situation they priortize maneuver that can ensure ADS saftey.
+>Automated driving system is often several units of functionality features known as ADS that automate specify driving tasks e.g Emergency brakes,traffic light cruise control and Artificial intelligence should also b envolved to know the enviroment information such as pedestarian speed,position of the car road structure lanes.This information should be useful for ADS feature to know car maneuver.Cruise control feature control car acceleratin speed while at the same time traffic recognization features helps to stop car when traffic light turn red.Some integrations rules are applied to resolve maneuver conflicts.Integrations rules provide us that which feature should be priortized according to condition such cruise control for speed traffic light recognization for traffic.The should should be come in contact with system after measuring enviroment information.Integration rules tend to diffuclt as they should provide large numbers of enviroment traffic light recognization.There needs to assist engineers as they repair integration rules for every situation they priortize maneuver that can ensure ADS saftey.Recentaly many approaches have been proposed to resolve fault in software systems.
 
+## 1..The repair technique should localize faults spanning     multiple lines of code.
 
+>Most Program techniques are spectrum-based techniques this is for single faulty program statement not for multiple.They may not identify fault in multi-statement.
 
+## The repair technique should be able to fix multiple independent faults in the code 2.
 
+>All patches and test suits are failing because of using single fault or patch at a time test suit. In ADS integration code fails due to presenece of multiple faults located in the different parts of code.We have to fix more than one  fault in the code. 
+
+## 3. The repair technique should scale to fixing faults at system-level where the software under test is executed using a feedback-loop simulator.
+
+>Simulation testing means to autonomous vehicle Testing Virtual verification services to ensure autonomous vehicles are road safe.Weather conditions and traffic situations.
+
+## 4.The repair technique should resolve failures in their order of severity.
+
+>In ADS some failures are more crirtical than others as here given example of speed of a car km/h if an oaccident occurs someone hits care to pedestarian less than 10km/h it is less crirtical than others.We are priortizing these startgies to avoid accidents.
+
+# 2 MOTIVATION AND BACKGROUND  
+The motivation of this paper that we should self drive to test ADS under four objectives cruiese contron,traffic recognization,pedestarian and bracking system.
+
+## 2.1 Motivating case study:
+
+our motivation is to propose a automated softawre system where one car's speed accleration must be averaged according to leading car.Traffic sign recognizations applied acceleration braking and steering commands,Pedistarian it removes accident occurs due to collision of pedestarian and car and braking sytem for sudden brakings.For e.g Autoamted cruise control manages car accelration from leading car at same time if a pedestarian is crossing road braking system avoid hitting car to pedestarian.

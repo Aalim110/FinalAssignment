@@ -68,5 +68,15 @@ Some Ordered integration rules to resolve conflicts between different ADS featur
 Each rule activates a simple ADS feature.
 
 These rules work according to enviroment variable
-for example a pedestarian detected behind a car the ttc time to collision between objects and speed of both pedesterian and car should be measured if both are in same speed than thr dist(p,c) denotes the distance between car and pedistaraian p for pedistarian and c for car.dist(c,sign) denotes the distance between car and traffic sign.
+for example a pedestarian detected behind a car the ttc time to collision between objects and speed of both pedesterian and car should be measured if both are in same speed than thr dist(p,c) denotes the distance between car and pedistaraian p for pedistarian and c for car.dist(c,sign) denotes the distance between car and traffic sign.Simlarly rule two states that if an object diffrent than pesdestarian is detected in front of car than AEB should be applied.
+
+There is two general ways predicted by wich integration rules may be wrong.
+
+## 1.
+>The pre condtions rules may be wrong there is un accuracy in mathematical or relational operators which are used for e.g using < instead of > and + instead of -.For rxample in rule no b  
+there is threshold distance is too small means when a pedestarian is detected in front of car there will less chances to avoid accidents.
+
+## 2.
+>Applying rules in different order or manner aplying rules in different will put effect on system behaviour.As in rule 3 ACC has been applied which violates car's speed limit and rule 4 TSR has given less priority as compare to rule 3 is never checked and cannot activate TSR.To avoid this situation rule 4 should be priortized over rule 3.
+
 

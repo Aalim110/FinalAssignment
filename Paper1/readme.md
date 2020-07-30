@@ -68,7 +68,7 @@ Some Ordered integration rules to resolve conflicts between different ADS featur
 Each rule activates a simple ADS feature.
 
 These rules work according to enviroment variable
-for example a pedestarian detected behind a car the ttc time to collision between objects and speed of both pedesterian and car should be measured if both are in same speed than thr dist(p,c) denotes the distance between car and pedistaraian p for pedistarian and c for car.dist(c,sign) denotes the distance between car and traffic sign.Simlarly rule two states that if an object diffrent than pesdestarian is detected in front of car than AEB should be applied.
+for example a pedestarian detected behind a car the ttc time to collision between objects and speed of both pedesterian and car should be measured if both are in same speed than the dist(p,c) denotes the distance between car and pedistaraian p for pedistarian and c for car.dist(c,sign) denotes the distance between car and traffic sign.Simlarly rule two states that if an object diffrent than pesdestarian is detected in front of car than AEB should be applied.
 
 There is two general ways predicted by wich integration rules may be wrong.
 

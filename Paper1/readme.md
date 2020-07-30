@@ -54,7 +54,7 @@ Here in this paper authors proposed a repair technique to automatically resolve 
 
 ## 4.The repair technique should resolve failures in their order of severity.
 
->In ADS some failures are more crirtical than others as here given example of speed of a car km/h if an oaccident occurs someone hits care to pedestarian less than 10km/h it is less crirtical than others.We are priortizing these startgies to avoid accidents.
+>In ADS some failures are more crirtical than others as here given example of speed of a car km/h if an accident occurs  someone hits car to pedestarian less than 10km/h it is less crirtical than others.We are priortizing these startgies to avoid accidents.
 
 # 2 MOTIVATION AND BACKGROUND  
 The motivation of this paper that we should self drive to test ADS under four objectives cruiese contron,traffic recognization,pedestarian and bracking system.
@@ -62,3 +62,11 @@ The motivation of this paper that we should self drive to test ADS under four ob
 ## 2.1 Motivating case study:
 
 our motivation is to propose a automated softawre system where one car's speed accleration must be averaged according to leading car.Traffic sign recognizations applied acceleration braking and steering commands,Pedistarian it removes accident occurs due to collision of pedestarian and car and braking sytem for sudden brakings.For e.g Autoamted cruise control manages car accelration from leading car at same time if a pedestarian is crossing road braking system avoid hitting car to pedestarian.
+
+Some Ordered integration rules to resolve conflicts between different ADS features.
+
+Each rule activates a simple ADS feature.
+
+These rules work according to enviroment variable
+for example a pedestarian detected behind a car the ttc time to collision between objects and speed of both pedesterian and car should be measured if both are in same speed than thr dist(p,c) denotes the distance between car and pedistaraian p for pedistarian and c for car.dist(c,sign) denotes the distance between car and traffic sign.
+

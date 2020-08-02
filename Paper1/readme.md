@@ -79,4 +79,21 @@ there is threshold distance is too small means when a pedestarian is detected in
 ## 2.
 >Applying rules in different order or manner aplying rules in different will put effect on system behaviour.As in rule 3 ACC has been applied which violates car's speed limit and rule 4 TSR has given less priority as compare to rule 3 is never checked and cannot activate TSR.To avoid this situation rule 4 should be priortized over rule 3.
 
+## 2.2 Context Formalization:
+
+ADS tuple has been defined with fragmented trees.leaf nodes choices between alternatives and gives result. As shown in figure 3 showing is a peditarian detected precondtion become true PP become activate if another object in front of car is detected AEB become activate.
+
+
+>In my perception the motviation of this paper is too good it is useful to avoid many accidents features of ADS are very much good in behaviour like ACC PP AEB TSR the features help us in in saftey driving this should be implemented.
+
+## Approach:
+In this section we present approach of ARIEL to repair and faults and faults in the integration rules of ADS.
+
+## 3.1: Fault Localization:
+It means localizing faults in code.Here localizing faults means to localize faults in integration rule of ADS that how their behaviour should be and what are the faults here are two ways to localize faults
+
+1.focusing on the path π ∈ Π covered at the time of failure.
+2.Considering " the severity of failures"
+
+## 3.1.1.focusing on the path π ∈ Π covered at the time of failure:
 

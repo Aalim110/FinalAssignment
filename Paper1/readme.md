@@ -96,4 +96,40 @@ It means localizing faults in code.Here localizing faults means to localize faul
 2.Considering " the severity of failures"
 
 ## 3.1.1.focusing on the path π ∈ Π covered at the time of failure:
+failures revealed by test case tc1 means to determine path that belongs cause failure by tc1.
+already discussed 2 wrong conditions in image 2 where wrong preconditons and wrong arrangement of rules have been propesed.
 
+## 3.1.2 severity of failure:
+
+In severity of failures there discussed ADS features faults for example if the distance between car and pedestarian is low there more chance of accident so it will focus on distancing and activating AEB.the lower the output the larger the severity values.
+
+## Program Repair: 
+It is genetic based technique in popultion evoleves by using genetic programming algoritham.which evolves pool of candidate patches iterratively..Each candidate patch is evaluated against the entire test suite to check whether changes lead to more or fewer failing tests.
+
+N × summation tc ∈TS cost(tc),
+Where N is population size and tc is cost test.
+
+Population based algoritham assume that cost of evluating individual patches is not too large.hence test result can be collected within few seconds.
+
+Based on the observations above,we opted fort he(1+1)Evolutionary Algorithm (EA) with an archive.(1+1) EA selects only one parent patch and generates only one offspring patch in each generation.Generating and assessing only one patch  at atime allows to reduce the cost of each iteration, thus addressing O3 in Section1.Our program repair approach,ARIEL,includes(i)(1+1)EA, (ii)our fault localization formula(Equation1),and(iii)thearchiving strategy.Algorithm 1provides the pseudo-code of ARIEL.
+
+ARIEL recieves as input TS and faultyself driving system.
+Where ,Π denotes the faulty integration rules.All pases test of output are repair intergration rules denoted by  Π∗.The Algoritham starts by intiazlizing the archieve with faulty rules.In each iteration ARIEL selects only one patch  Πp ∈ archive.and creates one offspring (Πo).   
+Then offspring will extract remaining failures by TS and compute them with corresponding object scores.The offspring patch is added to the archive if it decreases the severity of failures compares to the patches currently stored in archive .The  archive and its updating routine are described in details in sub section  3.2.4. These searchs tops when the termination criteria are met(seeSection3.2.5).
+
+## Generating a Patch:
+ARIEL generates patches by using routine algorithams by applying Fault Localization formula to determine the suspiciousness.
+Using  Roulette Wheel Selection (RWS) we select statment s  s ∈ Π among the most suspicious one.Routlee assigns each statement a probability of being selected for mutation.The probablities are suspiciousness of each statment.These algorithams are very beneficial in ADS it helps us to determine whether faults of self driving systems and features and integration rules of ADS are working on some saftey conditions.
+
+## Search Objectives:
+Search objectives identfies each failures occurs while TS which violets saftey requriements.Since ADS have multiple failures/violations.
+
+# Evaluation:
+>In this section we evaluate integration rules of ADS using indutria systems.
+## Case Study:
+In our expriments we used two system with the colaboration of company A.these two systems sontains four rules discussed in section 2.To resolve conflicts among these manuevers two different integration rules has been set.AutoDrive 1 and AutoDrive2.Their features and intergration rules are implemented in MatbLab/Simulink Language.We use Prescan.Prescan is a physics based simulation system that is used in automotive industries to develop advances driving assistance system.that are based on sensor technologies such as radar laser cameras and GPS.it is a vehicle to vehcile and vehile to infrastructure designing.Prescan also implemented in Matlab/simulink.AutoDrieve1 and AutoDrive2 can easily be integrated in prescan.
+AutoDrive1 and AutoDrive to include TIS(technology independent sensor).which identify the speed and position of objects and a camera.The perception layers recieves the data images and a camera and consisit among others tracking algorithams to predict the future trajectory of mobile objects and machine learning components that is based on support vector machine to detect and classify the objects.
+AutoDrive1 and AutoDrive2 include test case suites with nine and 7 system level test cases.The test suite for AutoDrive1 has four failing test cases,while AutoDribve2 has two.Each cases for both AutoDrives violets saftey requirements.Each test case for AutoDrive executes respective ADS features for 1200 simulation steps.These two system level tests have been designed manually by developers to achieve high structural coverage on the code of integration rules.Time for AutoDrive1 test suite execution is 20min and for AutoDrive2 its 30min. Each test suite contains one passing test case that exercise five ADS features.
+
+## Baseline Methods and Parameters:
+In this section we describe our base line methods of random search with mutations and genetic programming and parameters used in our expriments.

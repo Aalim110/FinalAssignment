@@ -133,3 +133,45 @@ AutoDrive1 and AutoDrive2 include test case suites with nine and 7 system level 
 
 ## Baseline Methods and Parameters:
 In this section we describe our base line methods of random search with mutations and genetic programming and parameters used in our expriments.
+unlike ARIEL baseline method use objectives baselineO similar to use the most existing approaches.
+defined as follows:
+baselineO =Wp × total_passed+ Wf × total_failed,
+where wf and wp are numbers applying of failing and passing tests.
+The weight wf typically much larger than wp there is more passing tests in test suite.
+
+## Random Search(RS):
+It is a natural baseline work compare with because of prior work.It is effective in programm repair.oftenly evolutionary algorithams.It genarates random patches not evolve with candidate patches by mutating only rules using either the modify or shift operator..The final solution(patch) among all randomly generated patches is the one with the best baselineO value. 
+
+## Random Search with Multiple Mutations (RS-MM):
+It is improved variant of RS Where multiple mutations are applied to the faulty rules set rather than one single mutation done in RS.
+In other wods RS-MM use same patches discussed in algoritham 2.
+
+ ## Genetic Programming (GP):
+ It deals with pool or population in algorithams by randomly generated patches and evaluate them using baslineO objective function. It generates new offspring patches by applying mutation operators to the paren patches then select best element from both individual and new. GP applies mutation operator many times to patches.
+
+ >Notet hat GP doesnot use the crossover operator because the alternative integration rules in the population are incomparable (e.g., rules/trees with different roots and rules orderings). 
+
+ ## Parameters:
+For the fitness function. baselineO used with three baseline methods RS ,RS-MM and GP some parameters are used for the alogorithams to make them balanced and maintain them.
+
+Figure five shows that rules applid in wrong manner and operators are being arrange to resolve failure.
+***
+
+# Results:
+
+By applying ARIEL 20 times through AutoDrive1 and AutoDrive2 untill all passed test which are input.Thus figure 6 shows hour average for reparing intergration rules for AutoDrive 1-2 .5 hour are averaged for AutoDrive 1 and 11 for AutoDrive2.
+Failures in AutoDrive1-2. caused by independent faults in different parts of code. To resolve these faults ARIEL fix  (I) wrong operator/threshold,  (II) wrong rule ordering and(III)a combination of both(I)and(II). for AutoDrive1 three faults were of type I and III and for AutoDrive2 type II.
+
+We ran ARIEL GP,RS,RS-MM for 20 times in the averaged hours are 16 for AutoDrive1-2.All the 20 runs of ARIEL are able to resolve faults.none of the runs of GP and RS were able to resolve all the failures in AutoDrive 1 or in AutoDrive2.RS-MM had a better performance as some of its runs could fix all the failing test cases in our case studies.
+As above results shows GP has worst performace in reparing integration rules. This is because of GP is population based algorithams taht evolves a pool of candidate patches iteratively. None of the GP runs could perform more than two iterations.ARIEL has the best performance compared to the three baseline methods.
+Time interval and AutoDrive1 and AutoDrive2 should be testted according to ARIEL.
+
+# Threats to Validity:
+The main threat to external validity is that our results may not generalize to other contexts. We distinguish two dimensions for external validity.(1)the applicability of our approach beyond  our case tudy system,and(2)obtaining the same level of benefits  as observed in our case study. Two industrial case studies have been provided in this paper. In our context,as it is commonly done for cyber-physicalsystems,testingisdonethroughsimulationofthe environment and hardware.The mutation operators used in our approach are general for integration rules in automated driving systems(the target of the paper)and for any cyber-physical systems where features send commands to commonactuators and conflicts are prevented by a rule-based integration component (common in self-driving cars, robots, etc.). Our framework can be further extended with other operators if needed in different contexts.With respect to the second dimension, while our case study was performed in are presentative industrial setting,addition al case studies remain necessary to further validate our approach. In summary, our frame work is generaliz able too therdoma in sw ith expensive test suites and similar integration architecture.If needed,mutation operators can be easily extended given the general structure of our framework.
+
+
+# RELATEDWORK 
+We classified the related work (Table4) by analyzing whether the existing automated repair approaches can handle multi-location faults (C1)? whether they can handle repairing systems that are expensive to execute(C2)?and whether they are able to distinguish between faults with different severity levels(C3)?As shown in the table,none of the existing repair techniques can address these three criteria,while as discussed earlier in the paper,ARIEL is designed under the assumption that test cases are expensive to run.Further, ARIEL can simultaneously repair multiple faults that might be multilocation and can prioritise repairing more severe faults over less severe ones.
+
+# Conclusion:
+Proposed a repair technique to recognize faults in integration rules of ADS.Our approach localizes faults over several lines of code to fix complex integration faults and deals with the scalability issues of testing and repairing ADS. Our repair algorithm relies on a many-objective,single-state search algorithm that uses an archive to keep track of partial repairs.Our approach is evaluated using two industrial ADS.There sults indicate that our repair strategy can fix the integration faults in these two systems and outperforms existing automated repair techniques. Feedback from domain experts indicates that the patches generated by our approach are understandable by engineers and could not have been developed by them without any automation assistance.

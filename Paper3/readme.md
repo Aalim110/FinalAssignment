@@ -113,8 +113,75 @@ Both of the above restrictions can be over come using the holonic ontology,which
 # Experimental setup 
 As imple example is given here to illustrate how holons could be used to facilitate the union of Mesos clusters with mobile nodes without the need for establishing direct communication. Duetothe high mobility of nodes during the tests,the composition of SoSs is dynamic,creating several additions and removals of the Me sos Services. This is something that would have been prohibitive to accomplish using Me sos’manual configuration. We tested this use case study using 100 devices that can move freely. Every device is considered a node for Me sos and is individually defined as a holon at the beginning of the experiment. Shortly afterwards(aminutelater),bigger holons begin to be created,containing one or more devices. After that,each holon starts an internal processof randomized leaderel ection to elect a master from amongs t the constituent devices. Each holon contains parameters to define its identifier,mobility, and whether or not it is a Me sos Master. Additionally, each holon contains three services: Ask For Master is performed everytime two holons reach each other for the first time,where it would return the ID of the Master. After a holon receives the request of whom is its Master, it will perform the Send Master service to send such ID. Bridge To Master isused by the nodes to communicate with the Master through its Agents. 
 
+# Behavior 
+Fig.14 a presents the starting point with holons H1 and H2. H1 is formed of four nodes: nodeA,working as a Master,while nodeB, node C and node D as Agents. On the other hand,H2 is formed of two nodes:nodeF,a Master,and node E,an Agent. In this case,H1 and H2 cannot reach each other. As node C and node E come in range of one another they are triggered to exchange ontologies and call Ask For Master and sub sequently Send Master. The orange arrow in the figure represents this interaction. Then,node C and node E broadcast their new ontologies to neighbors . Now, H1 and H2 are not just in contact with each other,they are part of a news uper-holon H3,which is the union of H1 and H2 as all their nodes receive the updated ontology and adopt it as their new ontology. All Agents are sharing the Masters node A(from H1)and node F (from H2). This is achieved using the service Bridge To Master,performed continuously by node C and node E while they can reach each other.The resulting SoS H3 has 2 Master nodes and 4 Agents. Therefore,each of the two Masters can communicate to all Agents in H3 as if they were connected directly. Similarly,this approach is also able to deal with Master  mobility as long as the basic structure of a Me sos cluster is not broken down. As such,the ontological exchange and reasoning of holons allows Apache Me sos to transcend its innatedesig n short comings and enables it to form a dynamic cluster structure. Achieving such structure throug h manual configuration(which is the only way possible using native Mesos)significantly restrict sad aptation and reduces cluster efficiency by a factor of 5 compared to using holons.Table 5 compares the tasks required from Mesos developers to implement this cases tudy in both the classical and proposed approaches. 
+
+# Simulations 
+For evaluating the efficacy of automated expansion of Mesos clusters through the use of holon ontologies, we used the Omnet++ discrete-events imulation framework to simulate 100 nodes. We set the node transmission range to 20m and theirs peed to 1.43m/s, an average walking speed. Additionally, the nodes used the individual-level(random walks)as a mobility model. We used Mesosaurus to create task loads to test the performance of the formed clusters. Specifically,we seek the length of time required by a Mesos Master to perform a specific task. The task created for this experiment is one that a Master with 5A gents will normally perform in about 20 seconds. If more Agents are employed,execution time is expected to decrease. plots the average task execution time across all Mesos clusters after 20 experiment runs.Using Mesos’native cluster management method,task execution time decreases slightly(from≈23s) as Masters expand their clusters through the use of scripts that add nodes they encounter in their environment. This improvement in performance, however, eventually plateaus (≈ 20s) as churn overwhel ms Masters through frequent configuration management, despite the use of automated scripts. On the other hand, using holons introduces some overhead in terms of ontology creation and reasoning.This results in a slightly in flated initial executiont ime (≈27s). However,as nodes encounter others during the life time of the simulation,Mesos clusters identifying as holons expand dynamically according to changes in their environment. Compiling and reasoning overheads soon become relatively in significant,enabling Mesos holons to achieve an average of 17s execution time,a15% improvement in performance.
+
+# Discussion of Case Studies: 
+The above experiments show how we are able to automatically self discover and compose systems through rich ontological description of elementary systems that are required to realizea SoS. We now reflect on there search questions we formulated.
+
+# Abstractions for SoS representation: 
+Holons offer the ability for systems to richly describe themselves, and independently reason about the change in their environment and how it might affect their set up and operation.This concept enables systems to reflecton their existence and how they fit into what is around them.This in line with theeth o s of reflective middle ware, which enables systems to build a representation of it self that it can then adapt. In addition,holonic representation allows systems to transfer such knowledge about themselves to other systems they get in touch with. Along with this,each system is able to build are presentation of the behavior of systems in its vicinity and form more complex systems without prior arrangement.
+There is an assumption that each system needs to start with a representation of it self in its simplest form as anontology.Because of this,we built our ontological architecture on the most generalize and easy-to-use ontology available in the literature.Further more, using such frame work makes it easy to create ontologies,which is a relatively small development overhead of similar or less scale of defining a system’sAPI. However,this enables the system to adapt after its deployment and unlock a new world of complex system creation that facilitates new forms of context- aware applications. 
+
+# Techniques for SoS composition: 
+The presented case studies demonstrated how a developer could define desired behavior at a high level( summarized in Tables 4– 5),and a system is subsequently composed of other sub-systems to align with this behavior. Our architecture allows systems to independently reason about their environment,and how changes might affect their setup and operation. This is a powerful concept as it maintains the separation of concerns, which is crucial for effective system development,whilst also reaping the rewards of complex system formation through autonomous composition. Further more,the holonic ontology could be applied at different levels: at the atomic service level (e.g., temperature sensor), at a system component level(e.g.,smartsensors),or at a higher system level(e.g.,smart home controller). This enables developers to write behavior at different levels of granularity with the same modeling effort,which is especially beneficial for dynamic environments such as the IoT where context-dependent behavior could be sought at different levels. 
+
+# SoS adaptation:  
+The presented architecture exploits the holonic ontology and maintains the holonic life cycle to fully support the vision of autonomous SoS composition and adaptation presented in this paper.The architecture continuously updates the holonic ontology allowing up-to date SoS state exchange and enables timely response to changes. This allows holons to detect failures and discover new functionalities a holon needs to re build a SoS.Asdemonstratedinthecluster managementcasestudy(§8),adaptation is fully autonomous. The system can,for example,detect the arrival of newworking nodes and add them to the cluster. Furthermore,human involvementis only needed when major requirements changes are required,i.e.,at the SoS level. For example, a change in the smart home requirements that demands the deployment of new devices might require updating the behavior of the smart homea pplications,i.e.,developers need to adaptthe abstract work flows. However,such intervention is guaranteed to be minimal as developers donot need to know the low-level details of post-deployment systems such as device-specific APIs. Therefore,our proposed architecture provides a generic frame workfor supporting high-level behavior adaptation to real implementation.
+
+# Quantative Evolution: 
+As mentioned,our proposed framework includes means of parsing holon ontologies to build a tree that represents SoS construction, and subsequently rendering the tree to disseminate the modified ontologies that reflect SoS evolution. We conducted experiments to evaluate the feasibility and correctness of this approach. Specifically, we investigate the time required to parse and render the ontologies at different scales,and we assess the validity of these stages. From this, we extract conclusions about the ability of using holons to compose SoS during runtime and at scale. The platform used in the experiments is Intel Corei7 with 16 GB RAM,runningLinux Ubuntu16.04 and Java SEv1.8.0.Results shown are theme an values from 100 experiment repetitions.
+
+# Parsing: 
+This first experiment focuses on evaluating the parsing time defined as the time of converting a received ontology into a tree.Recall that the tree contains the holon object as a root and the services provided by/via it as children. So,we vary the number of children (i.e.,services)as the main dimension affecting parsing scalability. We observe that parsing time increases linearly with the number of services,amounting to < 0.35s for a very complex SoS that provides 1,000 services either directly or indirectly. We find this level of complexity to be acceptable, as it indicates the feasibility of parsing an increasing number of holons in a SoS.
+
+# Rendering: 
+We now evaluate the rendering time defined as the time to convert a holon tree into an ontology to be disseminated. We vary both the number of neighbor holons(children)and the number of their services(leaves) demonstrates that the rendering overhead increases both with the number of holons and the number of services per holon. This is acceptable for SoSs with up to 100 servicesperholon,where rendering over head is≈ 5s. However this quickly in flates for holons with 1,000 or more sub-systems,where it could take up to a minute to create an ontology that could be used for composition.
+
+# Validation In this sub section:
+we validate the output of the parsing and rendering operations using tw oexperiments. In the first experiment we adopt the process depicted. We create ontologies for 100 holons with random values for each of their parameter and service values. We then pass the ontology files to the OWL Parser,which creates the holon trees. The trees are then passed to the OWL Renderer to render them in to ontologies. We then query(using OWL API)both the created ontologies and the rendere dones to check if the results are equivalent. For al l100 ontologies,there turned values were indeed equivalent. In the second experiment, we adopt the process portrayed. Here,we synthesized 100 compiled trees,each representing a SoS.We then passed the trees to the OWL Renderer to render them into a SoS ontology for each tree.Then we queried both the rendered ontologies and the created trees to compare the results. Again,for all of the 100 cases,there turned values were equal.
+
+# Conclusion:
+We propose an approach for the dynamic construction of distributed systems of systems(SoSs). The approach is based on two key ideas. First, we define the concept of a holon as a self-describing system, which could span from atomic to complex distributed systems. Holons need to be prepared for autonomic integration with other holons. This is achieved by comprehensively describing them using an ontology that enables both self-awareness and context awareness. Second,an architecture for SoS construction is proposed to make use of the holon description to discover,reason about their functionalities,and integrate them to form more complex SoS. We demonstrate the feasibility of our approach through two case studies that implement contrasting SoS construction scenarios. The cases studies show that our approach reduces the development complexity of SoS by abstracting system heterogeneity using holon descriptions and their autonomic manipulation at run time. We also evaluates calability and validity through experimentation,concluding that our approach is realistically feasible with performance exhibiting a linear trend for manipulating and reasoning about descriptions. This novel contribution has strong potential to be applied in various application fields beyond those covered in our case studies. Similarly,our architecture could be modified to caterfor domain specific interactions if particular situational-awareness are needed. Moreover,we are extending this work by building tools that allow very high levels pecification of desired SoS construction behavior and evolution.
+
+     
+
+
+
+
 
 
 
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
